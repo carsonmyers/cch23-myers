@@ -1,4 +1,5 @@
 mod day_1;
+mod day_4;
 
 use rocket::http::Status;
 use rocket::{get, routes};
@@ -15,7 +16,16 @@ fn index() -> &'static str {
 
 #[shuttle_runtime::main]
 async fn main() -> shuttle_rocket::ShuttleRocket {
-    let rocket = rocket::build().mount("/", routes![index, error, day_1::calibrate]);
+    let rocket = rocket::build().mount(
+        "/",
+        routes![
+            index,
+            error,
+            day_1::calibrate,
+            day_4::strength,
+            day_4::contest,
+        ],
+    );
 
     Ok(rocket.into())
 }
